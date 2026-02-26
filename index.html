@@ -33,7 +33,7 @@ nav ul li a{text-decoration:none;color:white;transition:0.3s;}
 nav ul li a:hover{color:#38bdf8;}
 .theme-light nav ul li a{color:#111;}
 .theme-light nav{background:rgba(255,255,255,0.5);}
-.theme-switch{padding:6px 12px;border-radius:6px;border:none;cursor:pointer;background:#38bdf8;}
+.theme-switch{padding:6px 12px;border-radius:6px;border:none;cursor:pointer;background:#38bdf8;color:white;}
 
 .hero{height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;padding:20px;}
 .hero-content{max-width:800px;}
@@ -54,6 +54,13 @@ transition:0.4s;
 .glass:hover{transform:translateY(-5px);}
 .theme-light .glass{background:rgba(0,0,0,0.05);}
 
+.filter-buttons{margin-bottom:20px;}
+.filter-buttons button{
+margin:5px;padding:8px 15px;border:none;border-radius:8px;
+cursor:pointer;background:#38bdf8;color:white;
+}
+.filter-buttons button:hover{background:white;color:black;}
+
 .skill{margin:20px 0;text-align:left;}
 .skill label{font-size:14px;}
 .skill-bar{width:100%;height:12px;background:rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;}
@@ -70,10 +77,10 @@ background:#38bdf8;color:black;transform:scale(1.05);
 }
 
 form{display:flex;flex-direction:column;gap:15px;margin-top:20px;}
-input,textarea{padding:10px;border:none;border-radius:8px;}
+input,textarea,select{padding:10px;border:none;border-radius:8px;}
 button{
 padding:10px;border:none;border-radius:8px;
-cursor:pointer;background:#38bdf8;transition:0.3s;
+cursor:pointer;background:#38bdf8;transition:0.3s;color:white;
 }
 button:hover{background:white;color:black;}
 
@@ -120,89 +127,106 @@ nav ul{display:none;}
 <section id="about" class="glass reveal">
 <h2>About Me</h2>
 <p>
-I am a passionate Cloud & DevOps enthusiast focused on building secure,
-scalable, and automated infrastructure solutions. With hands-on experience
-in AWS, containerization, CI/CD pipelines, and Linux systems,
-I aim to design cloud-native applications that deliver performance,
-reliability, and efficiency in real-world environments.
+Passionate Cloud & DevOps Engineer focused on building scalable,
+secure, and automated infrastructure solutions.
 </p>
 </section>
+
+<!-- ================= SKILLS ================= -->
 
 <section id="skills" class="glass reveal">
 <h2>Technical Skills</h2>
 
-<div class="skill">
+<div class="filter-buttons">
+<button onclick="filterSkills('all')">All</button>
+<button onclick="filterSkills('cloud')">Cloud</button>
+<button onclick="filterSkills('devops')">DevOps</button>
+<button onclick="filterSkills('os')">OS</button>
+</div>
+
+<div class="skill cloud">
 <label>AWS & Cloud Services</label>
 <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
 </div>
 
-<div class="skill">
-<label>Docker & Containerization</label>
+<div class="skill devops">
+<label>Docker & CI/CD</label>
 <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
 </div>
 
-<div class="skill">
-<label>CI/CD & Automation</label>
+<div class="skill os">
+<label>Linux Administration</label>
 <div class="skill-bar"><div class="skill-fill" data-width="75%"></div></div>
 </div>
 
-<div class="skill">
-<label>Linux & System Administration</label>
-<div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
-</div>
-
 </section>
+
+<!-- ================= PROJECTS ================= -->
 
 <section id="projects" class="glass reveal">
 <h2>Projects</h2>
-<div class="projects">
-<div class="project-card">Dockerized Web Application on AWS</div>
-<div class="project-card">Automated CI/CD Pipeline Deployment</div>
-<div class="project-card">Cloud Infrastructure Provisioning</div>
+
+<div class="filter-buttons">
+<button onclick="filterProjects('all')">All</button>
+<button onclick="filterProjects('aws')">AWS</button>
+<button onclick="filterProjects('devops')">DevOps</button>
+<button onclick="filterProjects('cloud')">Cloud</button>
 </div>
+
+<div class="projects">
+<div class="project-card aws">Dockerized Web App on AWS</div>
+<div class="project-card devops">Automated CI/CD Pipeline</div>
+<div class="project-card cloud">Cloud Infrastructure Provisioning</div>
+</div>
+
 </section>
+
+<!-- ================= CONTACT ================= -->
 
 <section id="contact" class="glass reveal">
 <h2>Contact Me</h2>
 <form id="contactForm">
+
+<select id="type" required>
+<option value="">Select Option</option>
+<option value="Feedback">Feedback</option>
+<option value="Project Inquiry">Project Inquiry</option>
+<option value="Skill Collaboration">Skill Collaboration</option>
+</select>
+
 <input type="text" id="name" placeholder="Your Name" required>
 <input type="email" id="email" placeholder="Your Email" required>
 <textarea rows="4" id="message" placeholder="Your Message" required></textarea>
+
 <button type="submit">Send Message</button>
 <div class="status-message" id="status"></div>
 </form>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
 
-/* ================= SUPABASE CONFIG ================= */
-
+/* SUPABASE */
 const supabaseUrl = "fjmkuumdjckeoxgwbaon";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqbWt1dW1kamNrZW94Z3diYW9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIwNzU2NjUsImV4cCI6MjA4NzY1MTY2NX0.HyENTZkoBC1pN95yYvtAwrSCHiIaoNeQZeroFLmeGHw";
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-/* ================= FORM SUBMISSION ================= */
-
+/* FORM */
 const form = document.getElementById("contactForm");
 const status = document.getElementById("status");
 
 form.addEventListener("submit", async (e) => {
 e.preventDefault();
 
-const button = form.querySelector("button");
-button.disabled = true;
-button.textContent = "Sending...";
-status.textContent = "Submitting...";
-status.style.color = "#38bdf8";
-
+const type = document.getElementById("type").value;
 const name = document.getElementById("name").value.trim();
 const email = document.getElementById("email").value.trim();
 const message = document.getElementById("message").value.trim();
 
 const { error } = await supabase
 .from("feedback")
-.insert([{ name, email, message }]);
+.insert([{ type, name, email, message }]);
 
 if (error) {
 status.textContent = error.message;
@@ -212,53 +236,41 @@ status.textContent = "Message sent successfully!";
 status.style.color = "lightgreen";
 form.reset();
 }
-
-button.disabled = false;
-button.textContent = "Send Message";
 });
 
-/* ================= TYPING EFFECT ================= */
+/* PROJECT FILTER */
+function filterProjects(category){
+document.querySelectorAll(".project-card").forEach(card=>{
+card.style.display = (category==="all" || card.classList.contains(category)) ? "block" : "none";
+});
+}
 
+/* SKILL FILTER */
+function filterSkills(category){
+document.querySelectorAll(".skill").forEach(skill=>{
+skill.style.display = (category==="all" || skill.classList.contains(category)) ? "block" : "none";
+});
+}
+
+/* TYPING */
 const roles=["Cloud Engineer","DevOps Engineer","AWS Learner"];
-let count=0,index=0,currentText="",letter="";
+let count=0,index=0;
 (function type(){
 if(count===roles.length){count=0;}
-currentText=roles[count];
-letter=currentText.slice(0,++index);
-document.querySelector(".typing").textContent=letter;
-if(letter.length===currentText.length){count++;index=0;}
+let text=roles[count];
+document.querySelector(".typing").textContent=text.slice(0,++index);
+if(index===text.length){count++;index=0;}
 setTimeout(type,120);
 })();
 
-/* ================= SCROLL REVEAL ================= */
-
-function reveal(){
-document.querySelectorAll(".reveal").forEach(el=>{
-if(el.getBoundingClientRect().top<window.innerHeight-100){
-el.classList.add("active");
-}});
-}
-window.addEventListener("scroll",reveal);
-
-/* ================= SKILL ANIMATION ================= */
-
+/* SCROLL PROGRESS */
 window.addEventListener("scroll",()=>{
-document.querySelectorAll(".skill-fill").forEach(fill=>{
-if(fill.getBoundingClientRect().top<window.innerHeight){
-fill.style.width=fill.dataset.width;
-}});
-});
-
-/* ================= PROGRESS BAR ================= */
-
-window.addEventListener("scroll",()=>{
-let winScroll=document.body.scrollTop||document.documentElement.scrollTop;
+let winScroll=document.documentElement.scrollTop;
 let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
 document.getElementById("progress").style.width=(winScroll/height)*100+"%";
 });
 
-/* ================= THEME SWITCH ================= */
-
+/* THEME SWITCH */
 const themes=["theme-gradient","theme-dark","theme-light"];
 let themeIndex=0;
 document.querySelector(".theme-switch").onclick=()=>{
