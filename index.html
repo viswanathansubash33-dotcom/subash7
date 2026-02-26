@@ -26,18 +26,16 @@ position:fixed;width:100%;display:flex;justify-content:space-between;
 align-items:center;padding:20px 60px;z-index:1000;
 background:rgba(0,0,0,0.3);backdrop-filter:blur(10px);
 }
-nav h2{font-weight:700;}
 nav ul{display:flex;list-style:none;}
 nav ul li{margin-left:25px;}
-nav ul li a{text-decoration:none;color:white;transition:0.3s;}
+nav ul li a{text-decoration:none;color:white;}
 nav ul li a:hover{color:#38bdf8;}
 .theme-light nav ul li a{color:#111;}
 .theme-light nav{background:rgba(255,255,255,0.5);}
 .theme-switch{padding:6px 12px;border-radius:6px;border:none;cursor:pointer;background:#38bdf8;color:white;}
 
-.hero{height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;padding:20px;}
-.hero-content{max-width:800px;}
-.hero h1{font-size:48px;margin-bottom:10px;}
+.hero{height:100vh;display:flex;justify-content:center;align-items:center;text-align:center;}
+.hero h1{font-size:48px;}
 .hero span{color:#38bdf8;}
 .typing{font-size:20px;height:30px;margin-top:10px;}
 
@@ -49,20 +47,14 @@ border-radius:15px;
 padding:40px;
 max-width:1000px;
 margin:40px auto;
-transition:0.4s;
 }
-.glass:hover{transform:translateY(-5px);}
-.theme-light .glass{background:rgba(0,0,0,0.05);}
 
-.filter-buttons{margin-bottom:20px;}
 .filter-buttons button{
 margin:5px;padding:8px 15px;border:none;border-radius:8px;
 cursor:pointer;background:#38bdf8;color:white;
 }
-.filter-buttons button:hover{background:white;color:black;}
 
 .skill{margin:20px 0;text-align:left;}
-.skill label{font-size:14px;}
 .skill-bar{width:100%;height:12px;background:rgba(255,255,255,0.1);border-radius:10px;overflow:hidden;}
 .skill-fill{height:100%;width:0;background:#38bdf8;transition:1.5s ease;}
 
@@ -70,7 +62,7 @@ cursor:pointer;background:#38bdf8;color:white;
 .project-card{
 padding:30px;border-radius:10px;
 background:rgba(255,255,255,0.05);
-transition:0.3s;cursor:pointer;
+cursor:pointer;
 }
 .project-card:hover{
 background:#38bdf8;color:black;transform:scale(1.05);
@@ -78,27 +70,16 @@ background:#38bdf8;color:black;transform:scale(1.05);
 
 form{display:flex;flex-direction:column;gap:15px;margin-top:20px;}
 input,textarea,select{padding:10px;border:none;border-radius:8px;}
-button{
-padding:10px;border:none;border-radius:8px;
-cursor:pointer;background:#38bdf8;transition:0.3s;color:white;
-}
-button:hover{background:white;color:black;}
 
-#progress{
-position:fixed;top:0;left:0;height:5px;
-background:#38bdf8;width:0%;z-index:2000;
-}
+button{padding:10px;border:none;border-radius:8px;cursor:pointer;background:#38bdf8;color:white;}
+button:disabled{opacity:0.6;cursor:not-allowed;}
+
+#progress{position:fixed;top:0;left:0;height:5px;background:#38bdf8;width:0%;z-index:2000;}
 
 .reveal{opacity:0;transform:translateY(40px);transition:1s;}
 .reveal.active{opacity:1;transform:translateY(0);}
 
 .status-message{margin-top:10px;font-size:14px;}
-
-@media(max-width:768px){
-nav{padding:20px;}
-nav ul{display:none;}
-.hero h1{font-size:34px;}
-}
 </style>
 </head>
 
@@ -118,7 +99,7 @@ nav ul{display:none;}
 </nav>
 
 <section class="hero">
-<div class="hero-content">
+<div>
 <h1>Hello, I'm <span>Subash V</span></h1>
 <div class="typing"></div>
 </div>
@@ -126,67 +107,42 @@ nav ul{display:none;}
 
 <section id="about" class="glass reveal">
 <h2>About Me</h2>
-<p>
-Passionate Cloud & DevOps Engineer focused on building scalable,
-secure, and automated infrastructure solutions.
-</p>
+<p>Passionate Cloud & DevOps Engineer building scalable infrastructure.</p>
 </section>
-
-<!-- ================= SKILLS ================= -->
 
 <section id="skills" class="glass reveal">
 <h2>Technical Skills</h2>
 
-<div class="filter-buttons">
-<button onclick="filterSkills('all')">All</button>
-<button onclick="filterSkills('cloud')">Cloud</button>
-<button onclick="filterSkills('devops')">DevOps</button>
-<button onclick="filterSkills('os')">OS</button>
-</div>
-
-<div class="skill cloud">
-<label>AWS & Cloud Services</label>
+<div class="skill">
+<label>AWS & Cloud</label>
 <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
 </div>
 
-<div class="skill devops">
+<div class="skill">
 <label>Docker & CI/CD</label>
 <div class="skill-bar"><div class="skill-fill" data-width="80%"></div></div>
 </div>
 
-<div class="skill os">
-<label>Linux Administration</label>
+<div class="skill">
+<label>Linux</label>
 <div class="skill-bar"><div class="skill-fill" data-width="75%"></div></div>
 </div>
 
 </section>
 
-<!-- ================= PROJECTS ================= -->
-
 <section id="projects" class="glass reveal">
 <h2>Projects</h2>
-
-<div class="filter-buttons">
-<button onclick="filterProjects('all')">All</button>
-<button onclick="filterProjects('aws')">AWS</button>
-<button onclick="filterProjects('devops')">DevOps</button>
-<button onclick="filterProjects('cloud')">Cloud</button>
-</div>
-
 <div class="projects">
-<div class="project-card aws">Dockerized Web App on AWS</div>
-<div class="project-card devops">Automated CI/CD Pipeline</div>
-<div class="project-card cloud">Cloud Infrastructure Provisioning</div>
+<div class="project-card">Dockerized Web App on AWS</div>
+<div class="project-card">Automated CI/CD Pipeline</div>
+<div class="project-card">Cloud Infrastructure Provisioning</div>
 </div>
-
 </section>
-
-<!-- ================= CONTACT ================= -->
 
 <section id="contact" class="glass reveal">
 <h2>Contact Me</h2>
-<form id="contactForm">
 
+<form id="contactForm">
 <select id="type" required>
 <option value="">Select Option</option>
 <option value="Feedback">Feedback</option>
@@ -207,56 +163,52 @@ secure, and automated infrastructure solutions.
 
 <script>
 
-/* SUPABASE */
+/* ===== FIXED SUPABASE URL ===== */
 const supabaseUrl = "fjmkuumdjckeoxgwbaon";
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqbWt1dW1kamNrZW94Z3diYW9uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIwNzU2NjUsImV4cCI6MjA4NzY1MTY2NX0.HyENTZkoBC1pN95yYvtAwrSCHiIaoNeQZeroFLmeGHw";
 const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-/* FORM */
+/* FORM SUBMISSION */
 const form = document.getElementById("contactForm");
 const status = document.getElementById("status");
 
 form.addEventListener("submit", async (e) => {
 e.preventDefault();
 
+const button = form.querySelector("button");
+button.disabled = true;
+button.textContent = "Sending...";
+
 const type = document.getElementById("type").value;
 const name = document.getElementById("name").value.trim();
 const email = document.getElementById("email").value.trim();
 const message = document.getElementById("message").value.trim();
 
+try {
 const { error } = await supabase
 .from("feedback")
 .insert([{ type, name, email, message }]);
 
-if (error) {
-status.textContent = error.message;
-status.style.color = "red";
-} else {
+if (error) throw error;
+
 status.textContent = "Message sent successfully!";
 status.style.color = "lightgreen";
 form.reset();
-}
-});
 
-/* PROJECT FILTER */
-function filterProjects(category){
-document.querySelectorAll(".project-card").forEach(card=>{
-card.style.display = (category==="all" || card.classList.contains(category)) ? "block" : "none";
-});
+} catch (err) {
+status.textContent = err.message;
+status.style.color = "red";
 }
 
-/* SKILL FILTER */
-function filterSkills(category){
-document.querySelectorAll(".skill").forEach(skill=>{
-skill.style.display = (category==="all" || skill.classList.contains(category)) ? "block" : "none";
+button.disabled = false;
+button.textContent = "Send Message";
 });
-}
 
-/* TYPING */
+/* TYPING EFFECT */
 const roles=["Cloud Engineer","DevOps Engineer","AWS Learner"];
 let count=0,index=0;
 (function type(){
-if(count===roles.length){count=0;}
+if(count===roles.length) count=0;
 let text=roles[count];
 document.querySelector(".typing").textContent=text.slice(0,++index);
 if(index===text.length){count++;index=0;}
@@ -269,6 +221,24 @@ let winScroll=document.documentElement.scrollTop;
 let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
 document.getElementById("progress").style.width=(winScroll/height)*100+"%";
 });
+
+/* REVEAL + SKILL ANIMATION */
+function revealElements(){
+document.querySelectorAll(".reveal").forEach(el=>{
+if(el.getBoundingClientRect().top<window.innerHeight-100){
+el.classList.add("active");
+}
+});
+
+document.querySelectorAll(".skill-fill").forEach(fill=>{
+if(fill.getBoundingClientRect().top<window.innerHeight){
+fill.style.width=fill.dataset.width;
+}
+});
+}
+
+window.addEventListener("scroll",revealElements);
+window.addEventListener("load",revealElements);
 
 /* THEME SWITCH */
 const themes=["theme-gradient","theme-dark","theme-light"];
