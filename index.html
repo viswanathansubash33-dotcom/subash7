@@ -12,8 +12,17 @@
 html{scroll-behavior:smooth;}
 body{background:#0f172a;color:white;transition:0.4s;overflow-x:hidden;}
 
-.theme-gradient{background:linear-gradient(-45deg,#0f172a,#1e293b,#0ea5e9,#6366f1);background-size:400% 400%;animation:gradientMove 12s ease infinite;}
-.theme-dark{background:#0b1120;}
+body.theme-gradient::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(-45deg,#0f172a,#1e293b,#0ea5e9,#6366f1);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  opacity: 0.6;   /* Controls intensity */
+}
+  .theme-dark{background:#0b1120;}
 .theme-light{background:#f4f4f4;color:#111;}
 
 @keyframes gradientMove{
@@ -263,3 +272,4 @@ document.body.classList.add(themes[themeIndex]);
 
 </body>
 </html>
+
