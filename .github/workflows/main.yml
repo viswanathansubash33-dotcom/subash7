@@ -1,4 +1,4 @@
-name: Basic CI Pipeline
+name: CI-CD Pipeline
 
 on:
   push:
@@ -9,11 +9,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Verify files
-        run: echo "Project files checked successfully"
+      - name: Install dependencies
+        run: npm install
 
-      - name: List files
-        run: ls -la
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    needs: build   # runs only if build succeeds
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Vercel
+        run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
